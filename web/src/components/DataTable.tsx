@@ -1,41 +1,48 @@
 import { Search } from "lucide-react";
+import { Badge, type BadgeTone } from "./ui/Badge";
+import { Button } from "./ui/Button";
+import { Input } from "./ui/Input";
+import { Table, TableCell, TableHeader } from "./ui/Table";
 
 export type TableColumn<T> = { key: keyof T; label: string };
 
+function statusTone(status: string): BadgeTone {
+  if (["In Stock", "Paid", "Completed", "Active"].includes(status)) return "success";
+  if (["Overdue", "Out of Stock", "Cancelled", "Error"].includes(status)) return "error";
+  if (["Pending", "Low Stock"].includes(status)) return "warning";
+  return "info";
+}
+
 export function DataTable<T extends { id: string; status: string }>({ columns, rows, searchPlaceholder, addLabel }: { columns: TableColumn<T>[]; rows: T[]; searchPlaceholder: string; addLabel: string }) {
   return (
-    <section className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm shadow-zinc-900/[0.02] dark:border-zinc-800 dark:bg-zinc-900">
-      <div className="flex flex-col gap-3 border-b border-zinc-100 p-4 sm:flex-row sm:items-center sm:justify-between dark:border-zinc-800">
-        <label className="flex h-9 items-center gap-2 rounded-lg border border-zinc-200 px-3 text-zinc-400 focus-within:border-indigo-400 focus-within:ring-2 focus-within:ring-indigo-100 dark:border-zinc-700 dark:focus-within:ring-indigo-950">
+    <section className="erp-card overflow-hidden">
+      <div className="flex flex-col gap-3 border-b border-[var(--border)] p-4 sm:flex-row sm:items-center sm:justify-between">
+        <label className="flex h-9 items-center gap-2">
           <Search size={15} />
-          <input aria-label={searchPlaceholder} placeholder={searchPlaceholder} className="w-full bg-transparent text-xs outline-none placeholder:text-zinc-400 sm:w-56 dark:text-zinc-100" />
+          <Input aria-label={searchPlaceholder} placeholder={searchPlaceholder} className="sm:w-56" />
         </label>
-        <button type="button" className="h-9 rounded-lg bg-indigo-600 px-4 text-xs font-semibold text-white transition-colors duration-150 hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2">{addLabel}</button>
+        <Button>{addLabel}</Button>
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[620px] text-left text-xs">
-          <thead className="bg-zinc-50 text-[10px] uppercase tracking-wider text-zinc-400 dark:bg-zinc-950/60">
-            <tr>{columns.map((column) => <th key={String(column.key)} className="px-5 py-3 font-semibold">{column.label}</th>)}</tr>
-          </thead>
-          <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+        <Table className="min-w-[620px]">
+          <TableHeader><tr>{columns.map((column) => <th key={String(column.key)} className="px-5 py-3 font-semibold">{column.label}</th>)}</tr></TableHeader>
+          <tbody className="divide-y divide-[var(--border)]">
             {rows.map((row) => (
-              <tr key={row.id} className="text-zinc-600 transition-colors hover:bg-zinc-50 dark:text-zinc-300 dark:hover:bg-zinc-800/50">
+              <tr key={row.id} className="text-[var(--muted)] transition-colors hover:bg-[var(--surface-muted)]">
                 {columns.map((column) => (
-                  <td key={String(column.key)} className="px-5 py-4">
-                    {column.key === "status" ? <span className={`rounded-full px-2.5 py-1 text-[10px] font-semibold ${row.status === "In Stock" || row.status === "Paid" || row.status === "Completed" ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300" : "bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-300"}`}>{String(row[column.key])}</span> : String(row[column.key])}
-                  </td>
+                  <TableCell key={String(column.key)}>{column.key === "status" ? <Badge tone={statusTone(row.status)}>{String(row[column.key])}</Badge> : String(row[column.key])}</TableCell>
                 ))}
               </tr>
             ))}
             {rows.length === 0 && (
               <tr>
-                <td colSpan={columns.length} className="px-5 py-16 text-center text-xs text-zinc-400">
+                <td colSpan={columns.length} className="px-5 py-16 text-center text-xs text-[var(--foreground-muted)]">
                   No data available yet.
                 </td>
               </tr>
             )}
           </tbody>
-        </table>
+        </Table>
       </div>
     </section>
   );
