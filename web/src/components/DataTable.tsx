@@ -27,6 +27,13 @@ export function DataTable<T extends { id: string; status: string }>({ columns, r
                 ))}
               </tr>
             ))}
+            {rows.length === 0 && (
+              <tr>
+                <td colSpan={columns.length} className="px-5 py-16 text-center text-xs text-zinc-400">
+                  No data available yet.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

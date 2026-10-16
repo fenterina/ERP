@@ -39,10 +39,10 @@ export function ProfileMenu({ collapsed = false }: { collapsed?: boolean }) {
           <>
             <span className="min-w-0 flex-1">
               <span className="block truncate text-xs font-semibold text-zinc-800 dark:text-zinc-100">
-                Francis
+                User
               </span>
               <span className="block truncate text-[11px] text-zinc-500 dark:text-zinc-400">
-                Admin
+                Account
               </span>
             </span>
             <ChevronUp size={15} className={`text-zinc-400 transition-transform ${open ? "" : "rotate-180"}`} />
