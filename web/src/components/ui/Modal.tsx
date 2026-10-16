@@ -26,7 +26,7 @@ export function Modal({
         onMouseDown={(event) => event.stopPropagation()}
       >
         <div className="mb-5 flex items-center justify-between gap-4">
-          <h2 id="modal-title" className="font-display text-lg font-bold text-[var(--ink)] dark:text-white">{title}</h2>
+          <h2 id="modal-title" className="font-[var(--font-poppins)] text-lg font-bold text-[var(--ink)] dark:text-white">{title}</h2>
           <button type="button" aria-label="Close dialog" onClick={onClose} className="rounded-[var(--radius-sm)] p-1.5 text-[var(--foreground-muted)] hover:bg-[var(--surface-muted)]">
             <X size={17} />
           </button>

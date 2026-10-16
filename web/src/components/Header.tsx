@@ -16,7 +16,7 @@ export function Header({ onMenuClick }: { onMenuClick: () => void }) {
           <Menu size={19} />
         </button>
         <div className="min-w-0">
-          <p className="truncate font-display text-lg font-semibold tracking-tight text-[var(--ink)] dark:text-white">{page.label}</p>
+          <p className="truncate font-[var(--font-poppins)] text-lg font-semibold tracking-tight text-[var(--ink)] dark:text-white">{page.label}</p>
             <p className="hidden text-xs text-[var(--foreground-muted)] sm:block">Workspace / {page.label}</p>
         </div>
       </div>

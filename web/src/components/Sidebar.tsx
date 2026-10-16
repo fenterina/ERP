@@ -35,7 +35,7 @@ export function Sidebar({
           {!collapsed && (
             <div className="flex items-center gap-2.5">
               <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--royal-blue)] text-xs font-bold text-white">E</span>
-              <span className="font-display text-sm font-bold tracking-tight text-[var(--ink)] dark:text-white">ERP</span>
+              <span className="font-[var(--font-poppins)] text-sm font-bold tracking-tight text-[var(--ink)] dark:text-white">ERP</span>
             </div>
           )}
           <button
