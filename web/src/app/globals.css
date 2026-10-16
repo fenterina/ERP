@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f8fa;
+  --foreground: #17191c;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+}
+
+html.dark {
+  --background: #101214;
+  --foreground: #f1f3f5;
+}
+
+* {
+  border-color: #e5e7eb;
+}
+
+html.dark * {
+  border-color: #2a2e34;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+}
+
+@utility menu-item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #52525b;
+  transition: background-color 150ms, color 150ms;
+}
+
+.menu-item:hover {
+  background: #f4f4f5;
+  color: #18181b;
+}
+
+html.dark .menu-item {
+  color: #a1a1aa;
+}
+
+html.dark .menu-item:hover {
+  background: #27272a;
+  color: #f4f4f5;
+}
+
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: #c7d2fe;
+  color: #1e1b4b;
+}

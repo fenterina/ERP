@@ -1,0 +1,6 @@
+import { DataTable, type TableColumn } from "@/components/DataTable";
+import { PageContainer } from "@/components/PageContainer";
+type Sale = { id: string; order: string; customer: string; date: string; amount: string; status: string };
+const columns: TableColumn<Sale>[] = [{ key: "order", label: "Order" }, { key: "customer", label: "Customer" }, { key: "date", label: "Date" }, { key: "amount", label: "Amount" }, { key: "status", label: "Status" }];
+const rows: Sale[] = [{ id: "1", order: "#ORD-2048", customer: "Acme Corporation", date: "Oct 16, 2024", amount: "$4,820.00", status: "Paid" }, { id: "2", order: "#ORD-2047", customer: "Northstar Labs", date: "Oct 15, 2024", amount: "$2,140.00", status: "Completed" }, { id: "3", order: "#ORD-2046", customer: "Cedar & Co.", date: "Oct 14, 2024", amount: "$980.00", status: "Pending" }, { id: "4", order: "#ORD-2045", customer: "Brightside Studio", date: "Oct 14, 2024", amount: "$1,760.00", status: "Paid" }];
+export default function SalesPage() { return <PageContainer><div className="mb-8"><h1 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Sales</h1><p className="mt-1 text-sm text-zinc-500">Review orders, customers, and transaction status.</p></div><DataTable columns={columns} rows={rows} searchPlaceholder="Search orders..." addLabel="Create order" /></PageContainer>; }
